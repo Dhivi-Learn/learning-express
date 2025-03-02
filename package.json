@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
-    "build": "nodemon  build server.js",
+    "start": "node server.js",
+    "build": "nodemon build server.js",
     "swagger-autogen": "node ./swagger.js"
   },
   "author": "DhineshKumar Selvam",

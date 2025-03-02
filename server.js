@@ -54,10 +54,10 @@ app.get("/", async (req, res) => {
     res.send("Hello Express | Node!")
 })
 
-app.use("/auth", authRouter)
-app.use("/comments", commentsRouter) // comments
-app.use("/movies", moviesRouter)
-app.use("/users", userRouter)
+app.use("/api/auth", authRouter);
+app.use("/api/comments", commentsRouter);
+app.use("/api/movies", moviesRouter);
+app.use("/api/users", userRouter);
 
 mongoose.connection.on("error", (err) => {
     console.error(err);
