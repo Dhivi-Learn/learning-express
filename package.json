@@ -1,5 +1,5 @@
 {
-  "name": "express",
+  "name": "express-app",
   "version": "1.0.0",
   "description": "A backend framework to handle API and server",
   "main": "server.js",
@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
+    "build": "nodemon build",
     "swagger-autogen": "node ./swagger.js"
   },
   "author": "DhineshKumar Selvam",
@@ -29,6 +30,7 @@
     "nodemon": "^3.1.9",
     "swagger-autogen": "^2.23.7",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "vercel": "^41.3.0"
   }
 }
