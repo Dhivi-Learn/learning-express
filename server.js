@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import winston from "winston";
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
 import openapiSpecification from "./swagger.js";
 import {MONGODB_URI, PORT} from "./config/env.config.js";
@@ -52,12 +53,19 @@ mongoose.connection.on("error", (err) => {
 })
 
 const connectDataBase = async()=>{
-  await mongoose.connect(MONGODB_URI);
+  if (mongoose.connection.readyState === 1) {
+    return; // Already connected
+  }
+  await mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
   console.log("MongoDB Connected");
 }
 
-//connect server
-app.listen(PORT, async()=> {
-  await connectDataBase();
-  console.log("Server running on port: " + PORT);
-});
+export default async function handler(req, res) {
+  if (!mongoose.connection.readyState) {
+    await connectDataBase();
+  }
+  return app(req, res);
+};
