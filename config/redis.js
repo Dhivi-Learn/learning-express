@@ -1,10 +1,16 @@
-import redis from "redis";
+import redis, {createClient} from "redis";
+import {REDIS_PORT, REDIS_URL} from "./env.config.js"
+import {configDotenv} from "dotenv";
+
+configDotenv()
 
 //crete redis client
-const redisClient = redis.createClient({
+const redisClient = createClient({
+    url: REDIS_URL, // Use a secure Redis URL
     socket: {
-        host: "127.0.0.1",
-        port: 6379
+        reconnectStrategy: (retries) => Math.min(retries * 50, 1000), // Retry strategy
+        keepAlive: 30000, // Keep connection alive
+        connectTimeout: 10000, // Timeout if Redis doesn’t respond
     }
 });
 

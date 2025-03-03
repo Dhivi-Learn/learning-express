@@ -28,6 +28,8 @@ const limiter = rateLimit({
 
 //middleware
 const app = express();
+// Trust the proxy (Vercel's infrastructure)
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(cors())
 app.use(helmet())
@@ -86,3 +88,5 @@ const shutdown = async () => {
 // Handle termination signals
 process.on("SIGINT", shutdown);  // Ctrl+C
 process.on("SIGTERM", shutdown); // Docker/Cloud shutdown signal
+
+export default app;
