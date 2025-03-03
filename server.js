@@ -86,6 +86,3 @@ const shutdown = async () => {
 // Handle termination signals
 process.on("SIGINT", shutdown);  // Ctrl+C
 process.on("SIGTERM", shutdown); // Docker/Cloud shutdown signal
-
-
-export default app;
