@@ -14,6 +14,8 @@ import userRouter from "./routes/users.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
+import compression from "compression"
+import connectDataBase from "./config/db.config.js";
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -30,6 +32,7 @@ app.use(express.json());
 app.use(cors())
 app.use(helmet())
 app.use(limiter)
+app.use(compression())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 const {combine, timestamp, json} = winston.format;
 
@@ -63,10 +66,6 @@ mongoose.connection.on("error", (err) => {
     console.error(err);
 })
 
-const connectDataBase = async () => {
-    await mongoose.connect(MONGODB_URI);
-    console.log("MongoDB Connected");
-}
 
 //connect server
 const server = app.listen(PORT, async () => {
