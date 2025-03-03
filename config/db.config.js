@@ -2,9 +2,6 @@ import mongoose from "mongoose";
 import {MONGODB_URI} from "./env.config.js";
 
 const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
     maxPoolSize: 10,
 }
 
