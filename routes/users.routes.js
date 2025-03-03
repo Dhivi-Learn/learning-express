@@ -7,9 +7,9 @@ import {setCacheKey} from "../utils/caching.js";
 const userRouter = Router();
 
 //create new user
-userRouter.post('/',setCacheKey("newUser"),checkCache, createNewUser);
+userRouter.post('/',setCacheKey("newUser"), createNewUser);
 //get all users
-userRouter.get('/',setCacheKey("users"),checkCache, getAllUsers);
+userRouter.get('/',setCacheKey("users"), getAllUsers);
 
 
 
