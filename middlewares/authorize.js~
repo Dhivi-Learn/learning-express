@@ -26,5 +26,6 @@ export const authMiddleware = (req, res, next) => {
     if (!apiKey || apiKey !== "secret-key") {
         return res.status(401).json({ error: "Unauthorized" });
     }
+
     next(); // Proceed if key is correct
 };

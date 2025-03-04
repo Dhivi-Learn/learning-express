@@ -35,9 +35,3 @@ export const createNewUser = async (req, res) => {
         res.status(500).json({message: "Error in creating user"}).end();
     }
 }
-
-//TEST
-export const getUsers = async (req, res) => {
-    const users = await User.find();
-    res.json(users);
-};
